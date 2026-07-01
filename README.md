@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# portfolio-editorial
 
-## Getting Started
+A dark, type-led editorial portfolio for Dhanush Shankar — set in Fraunces &
+Inter, printed in the dark. Reads like an engineering journal, not a template.
 
-First, run the development server:
+## Stack
+
+Next.js 16 (App Router, Turbopack), React 19, Tailwind CSS v4, Framer Motion 11,
+cmdk, Vercel Analytics + Speed Insights, `@vercel/og` for social cards.
+
+## Local dev
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deploy
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Push to a repo and import into Vercel — zero config required.
 
-## Learn More
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FDanush-Aries%2Fportfolio-editorial)
 
-To learn more about Next.js, take a look at the following resources:
+## Highlights
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Type-forward hero with a single warm amber accent and hair-thin fold-marker rule
+- List-form work index (no thumbnails, keyboard-navigable, hover-reveal tech tags)
+- Editorial case-study template with dropcaps, pull quotes, and hand-drawn SVG diagrams
+- `/notes` reverse-chron essay stream with reading-time estimates
+- Full `/colophon` with type stack, palette, and toolchain
+- `Cmd + K` command palette to jump between sections and projects
+- Dynamic OG image via `@vercel/og`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Structure
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+src/
+  app/            App Router routes (home, work/[slug], notes, colophon)
+  components/     nav, hero, work, sections, prose, primitives
+  content/        MDX seed for work + notes
+  lib/            projects, notes, cn
+```
