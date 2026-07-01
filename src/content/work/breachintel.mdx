@@ -1,0 +1,10 @@
+---
+title: BreachIntel
+slug: breachintel
+year: 2026
+pitch: 14-feed dark-web OSINT terminal that polls breach dumps through a single FastAPI queue.
+---
+
+Personal dark-web monitoring rig. Rewrite of a spaghetti of six cron jobs into a
+single FastAPI service with a Redis-backed queue, a canonicalization step, and a
+dedup layer keyed on the SHA of the plaintext leak content.

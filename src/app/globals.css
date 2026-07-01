@@ -1,26 +1,173 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-bg: #0b0b0c;
+  --color-ink: #050506;
+  --color-surface: #141416;
+  --color-text: #f5f1ea;
+  --color-accent: #e8a24c;
+  --color-accent-2: #8a8078;
+  --color-stone: #8a8078;
+
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, "SF Mono", Menlo, monospace;
+}
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "ss01", "ss02", "tnum", "lnum";
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* subtle noise texture */
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 3px 3px;
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-ink);
+}
+
+/* Fraunces display polish */
+.font-display {
+  font-family: var(--font-display);
+  font-feature-settings: "ss01", "ss02";
+  font-optical-sizing: auto;
+}
+
+.font-mono-meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--color-accent-2);
+}
+
+/* Animated underline for accent links */
+.accent-underline {
+  background-image: linear-gradient(var(--color-accent), var(--color-accent));
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  transition: background-size 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.accent-underline:hover {
+  background-size: 100% 1px;
+}
+
+/* Prose overrides */
+.prose-editorial {
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.65;
+  max-width: 68ch;
+}
+.prose-editorial p {
+  margin-block: 1.15em;
+}
+.prose-editorial h1,
+.prose-editorial h2,
+.prose-editorial h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  color: var(--color-text);
+  font-optical-sizing: auto;
+}
+.prose-editorial h2 {
+  font-size: 2rem;
+  margin-top: 2.5em;
+  margin-bottom: 0.5em;
+}
+.prose-editorial h3 {
+  font-size: 1.35rem;
+  margin-top: 1.8em;
+  margin-bottom: 0.4em;
+}
+.prose-editorial a {
+  color: var(--color-text);
+  text-decoration: none;
+  background-image: linear-gradient(var(--color-accent), var(--color-accent));
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+  background-position: 0 100%;
+  padding-bottom: 1px;
+}
+.prose-editorial a:hover {
+  color: var(--color-accent);
+}
+.prose-editorial code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--color-ink);
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+  color: var(--color-accent);
+}
+.prose-editorial ul,
+.prose-editorial ol {
+  padding-left: 1.4em;
+  margin-block: 1.15em;
+}
+.prose-editorial ul li::marker {
+  color: var(--color-accent-2);
+}
+.prose-editorial blockquote {
+  border-left: 2px solid var(--color-accent);
+  padding-left: 1.25em;
+  margin: 1.5em 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.35rem;
+  color: var(--color-text);
+}
+.prose-editorial hr {
+  border: 0;
+  border-top: 1px solid rgba(245, 241, 234, 0.08);
+  margin: 3em 0;
+}
+
+/* Pulsing amber dot */
+@keyframes pulseDot {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(232, 162, 76, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(232, 162, 76, 0);
+  }
+}
+.pulse-dot {
+  animation: pulseDot 2.4s ease-out infinite;
+}
+
+/* Hide default scrollbar look on WebKit */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(245, 241, 234, 0.08);
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(245, 241, 234, 0.15);
 }

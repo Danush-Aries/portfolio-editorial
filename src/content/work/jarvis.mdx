@@ -1,0 +1,13 @@
+---
+title: Jarvis
+slug: jarvis
+year: 2026
+pitch: Personal AI co-pilot — macOS daemon + voice-first mode over Whisper, driven by Claude Code.
+---
+
+Jarvis is the daily-driver AI assistant I built for myself. It runs as a launchd
+daemon on macOS, listens for a global hotkey, streams audio through whisper.cpp,
+and hands the transcript to Claude via MCP tools.
+
+The design principle: every tool is deterministic and reversible. The model is
+the only source of ambiguity in the loop.
