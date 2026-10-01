@@ -42,3 +42,7 @@ src/
   content/        MDX seed for work + notes
   lib/            projects, notes, cn
 ```
+
+## License
+
+MIT — see [LICENSE](LICENSE).
